@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>numberGame</title>
+	<style type="text/css">
+		.styling{
+			text-align:center;
+			border:5px solid blue;
+			width:600px;
+			margin:100px auto;
+		}
+		#submit{
+			color:black;
+			font-size:1.9em;
+			width:200px;
+			height:40px;
+		}
+	</style>
+</head>
+<body>
+	<div class="styling">
+		<h1>Number Game</h1>
+		<h2 id="score"></h2>
+		<button type="submit" id="submit">Submit</button>
+		<h3 id="random-numbers"></h3>
+		<h3 id="message"></h3>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var score        = 1000;
+	var submit       = document.getElementById("submit");
+	var randomNumber = document.getElementById("random-numbers");
+	var scoreInr     = document.getElementById("score");
+	var message      = document.getElementById("message");
+	function arrayRandomNumber(){
+		var array = [];
+		var randomNumber;
+		for(i=0;i<3;i++){
+			array.push(Math.round(Math.random() * 9));
+		}
+		return array;	
+	}
+	function odd(array){
+		var odd;
+		odd = array.every(function(number){
+			return number % 2 !== 0;
+		})
+		return odd;
+	}
+	function even(array){
+		var even;
+		even = array.every(function(number){
+			return number % 2 === 0;
+		})
+		return even;
+	}
+	function sequence(array){
+		var i = 0;
+		var arraySort = array.sort();
+			if(arraySort[i+1]-arraySort[i] === 1){
+				if(arraySort[i+2]-arraySort[i+1] === 1){
+						return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}		
+	}
+	console.log(sequence([1,4,5]));
+	function equal(array){
+			var i = 0;
+			if(array[i]===array[i+1]){
+					if(array[i+1] === array[i+2]){
+						return true;
+					}else{
+						return false;
+					}
+			}else{
+				return false;
+			}
+	}
+	scoreInr.innerHTML = `you have ${score} INR`;
+	submit.addEventListener('click',function(){
+		randomNumberArray = arrayRandomNumber();
+		randomNumber.innerText = randomNumberArray.join(" ");
+		if(score > 100){
+			if(equal(randomNumberArray)){
+				score += 1000;
+				scoreInr.innerHTML = `you have ${score} INR`;
+				message.innerHTML = "you have won 1000 INR as the numbers are equal";
+			}else if(odd(randomNumberArray)){
+				score += 300;
+				scoreInr.innerHTML = `you have ${score} INR`;
+				message.innerHTML = "you have won 300 INR as all the numbers are odd";
+			}else if(even(randomNumberArray)){
+				score += 300;
+				scoreInr.innerHTML = `you have ${score} INR`;
+				message.innerHTML = "you have won 300 INR as all the numbers are even";
+			}else if(sequence(randomNumberArray)){
+				score += 800;
+				scoreInr.innerHTML = `you have ${score} INR`;
+				message.innerHTML = "you have won 800 INR as the numbers are in sequence";
+			}else{
+				score -= 100;
+				scoreInr.innerHTML = `you have ${score} INR`;
+				message.innerHTML = "you were not lucky this time";
+			}
+		}else{
+			message.innerHTML = "game over";
+		}
+	});
+</script>
