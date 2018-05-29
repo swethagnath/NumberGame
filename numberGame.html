@@ -58,29 +58,26 @@
 	function sequence(array){
 		var i = 0;
 		var arraySort = array.sort();
-		if(arraySort[i+1]-arraySort[i] === 1){
-			if(arraySort[i+2]-arraySort[i+1] === 1){
-					return true;
-			}else{
-				return false;
+		found = false;
+		while(i < arraySort.length - 1){
+			if(arraySort[i+1]- arraySort[i] != 1){
+				non_consecutive = arraySort[i+1];
+				found = true;
+				break;
 			}
-		}else{
-			return false;
-		}		
-	}
-	console.log(sequence([1,4,5]));
-	function equal(array){
-		var i = 0;
-		if(array[i]===array[i+1]){
-				if(array[i+1] === array[i+2]){
-					return true;
-				}else{
-					return false;
-				}
-		}else{
-			return false;
+			i += 1
 		}
+		return !found;
 	}
+	function equal(array){
+			var found = false;
+			array.forEach(function(v){
+				if(array[0] !== v){
+					found = true;
+				}
+			})	
+			return !found;
+		}
 	scoreInr.innerHTML = `you have ${score} INR`;
 	submit.addEventListener('click',function(){
 		randomNumberArray = arrayRandomNumber();
