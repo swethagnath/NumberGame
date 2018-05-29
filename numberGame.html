@@ -58,28 +58,28 @@
 	function sequence(array){
 		var i = 0;
 		var arraySort = array.sort();
-			if(arraySort[i+1]-arraySort[i] === 1){
-				if(arraySort[i+2]-arraySort[i+1] === 1){
-						return true;
-				}else{
-					return false;
-				}
-			}else{
-				return false;
-			}		
-	}
-	console.log(sequence([1,4,5]));
-	function equal(array){
-			var i = 0;
-			if(array[i]===array[i+1]){
-					if(array[i+1] === array[i+2]){
-						return true;
-					}else{
-						return false;
-					}
+		if(arraySort[i+1]-arraySort[i] === 1){
+			if(arraySort[i+2]-arraySort[i+1] === 1){
+					return true;
 			}else{
 				return false;
 			}
+		}else{
+			return false;
+		}		
+	}
+	console.log(sequence([1,4,5]));
+	function equal(array){
+		var i = 0;
+		if(array[i]===array[i+1]){
+				if(array[i+1] === array[i+2]){
+					return true;
+				}else{
+					return false;
+				}
+		}else{
+			return false;
+		}
 	}
 	scoreInr.innerHTML = `you have ${score} INR`;
 	submit.addEventListener('click',function(){
